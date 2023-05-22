@@ -57,7 +57,7 @@ char *cpy_pthmd(char *loc, char *frm, char *command, int _loclen, int _commandle
 
 /**
  * _keepenvvariables - Creates a double pointer array,
- * and stores each path directory as a single pointer, NULL terminated
+ * and stores each path directory as a single pointer,
  * @_firstcommand: First command typed in the prompt
  * @env_var: The environment variables
  *
