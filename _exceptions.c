@@ -12,8 +12,8 @@ int _putexception(char e)
 /**
  * _buildexceptmessage - writes an error message when command not found.
  * @arguv: the argv from the int main function
- * @fir_com: first command to print if not found
- * @counter: the number of times you've done a command
+ * @_firstcommand: first command to print if not found
+ * @counter: the number of times a command has been initiated
  *
  * Return: void
  */
@@ -45,13 +45,11 @@ void _buildexceptmessage(char **arguv, char *_firstcommand, int counter)
 	_putexception(counter % 10 + '0');
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, _firstcommand, _strlenfinder(_firstcommand));
-	write(STDERR_FILENO, ": Can't find command'\n", 12);
+	write(STDERR_FILENO, ": cant find'\n", 12);
 }
 /**
- * _eof - function to handle ctrl+c interrupt signal
- * writes a new line, then frees the buffer from getline
- * @buffer: buffer array created by new line
- *
+ * _endof - function to handle ctrl+c interrupt signal
+ * @buff: Buffer array thats been created by newline
  * Return: void
  */
 void _endof(char *buff)
