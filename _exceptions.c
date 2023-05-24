@@ -45,7 +45,7 @@ void _buildexceptmessage(char **arguv, char *_firstcommand, int counter)
 	_putexception(counter % 10 + '0');
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, _firstcommand, _strlenfinder(_firstcommand));
-	write(STDERR_FILENO, ": cant find'\n", 12);
+	write(STDERR_FILENO, ": not found\n", 12);
 }
 /**
  * _endof - function to handle ctrl+c interrupt signal
