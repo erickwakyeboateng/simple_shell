@@ -9,9 +9,9 @@
 
 unsigned int _finddirect(char *pth)
 {
-	unsigned int finddirect,_flg, k;
+	unsigned int finddirect, _flg, k;
 
-	k = 0, finddirect = 0,_flg = 0;
+	k = 0, finddirect = 0, _flg = 0;
 	while (pth[k])
 	{
 		if (pth[k] != ':')
@@ -38,7 +38,8 @@ unsigned int _finddirect(char *pth)
  * Return: Address of destination
  */
 
-char *cpy_pthmd(char *loc, char *frm, char *command, int _loclen, int _commandlen)
+char *cpy_pthmd(char *loc, char *frm, char *command,
+		int _loclen, int _commandlen)
 {
 	int k, l;
 
@@ -91,7 +92,8 @@ char **_keepenvvariables(char *_firstcommand, char **env_var)
 			free_double_pointer(_alldirectries);
 			return (NULL);
 		}
-		cpy_pthmd(_alldirectries[k], _directry, _firstcommand, _directrylent, _comlent);
+		cpy_pthmd(_alldirectries[k], _directry,
+				_firstcommand, _directrylent, _comlent);
 		++k;
 		_directry = strtok(NULL, ":");
 	}
@@ -105,7 +107,7 @@ char **_keepenvvariables(char *_firstcommand, char **env_var)
  * @_envname: name of the environment vaariable you are looking for
  * @env_var: the enviroment variables
  *
- * Return: the value associated with the variable
+ * Return: the value that comes with the variable
  */
 
 char *get_env_varible(const char *_envname, char **env_var)
@@ -145,7 +147,7 @@ char *get_env_varible(const char *_envname, char **env_var)
 
 /**
  * prntenvvar - Prints all environment variables to the output
- * @env_var: All user environment variables
+ * @_userenvvar: All user environment variables
  * Return: void
  */
 
