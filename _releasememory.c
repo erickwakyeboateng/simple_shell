@@ -1,25 +1,26 @@
 #include "simpleshell.h"
 /**
- * free_double_pointer - Entry point
- * @_doubleptr: pointer to be double freed
+ * free_double_pointer - Releases memory associated with the double pointer
+ * @_doubleptr: Double pointer to be freed
  *
  * Return: void
  */
 void free_double_pointer(char **_doubleptr)
 {
-	unsigned int n = 0;
+	unsigned int a = 0;
 
 	if (_doubleptr == NULL)
 		return;
 
-	while (_doubleptr[n])
+	while (_doubleptr[a])
 	{
-		free(_doubleptr[n]);
-		++n;
+		free(_doubleptr[a]);
+		++a;
 	}
 
-	if (_doubleptr[n] == NULL)
-		free(_doubleptr[n]);
+	if (_doubleptr[a] == NULL)
+		free(_doubleptr[a]);
 
 	free(_doubleptr);
 }
+

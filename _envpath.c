@@ -1,8 +1,8 @@
 #include "simpleshell.h"
 
 /**
- * _finddirect- Entry point
- * @pth: path of string to be look at
+ * _finddirect- Looks for the total directories in the users path
+ * @pth: The path string
  *
  * Return: Number of directories in the path
  */
@@ -29,9 +29,9 @@ unsigned int _finddirect(char *pth)
 
 /**
  * cpy_pthmd - Copies the paths and appens a / + command to each path
- * @loc: The loclen destination
- * @frm: The source of frm
- * @command: appending commands
+ * @loc: The destination
+ * @frm: The source
+ * @command: Cmd to append
  * @_loclen: Length of destination
  * @_commandlen: Length of the command
  *
@@ -57,16 +57,17 @@ char *cpy_pthmd(char *loc, char *frm, char *command,
 }
 
 /**
- * _keepenvvariables - Entry point
+ * _keepenvvariables - Creates a double pointer array,
+ * and stores each path directory as a single pointer,
  * @_firstcommand: First command typed in the prompt
- * @env_var: variables of the environment
+ * @env_var: The environment variables
  *
  * Return: memory address of the double pointer array
  */
 
 char **_keepenvvariables(char *_firstcommand, char **env_var)
 {
-	/*** FIRST COMMAND OF THE SHELL ***/
+	/* _firstcommand is the first command from the shell */
 	char **_alldirectries;
 	char *_pthenv, *_directry;
 	unsigned int lent, k;
@@ -102,9 +103,9 @@ char **_keepenvvariables(char *_firstcommand, char **env_var)
 }
 
 /**
- * get_env_varible - Entry point
- * @_envname: name of the environment variable you are looking for
- * @env_var: variables of the enviroment
+ * get_env_varible - gets the environment variable value
+ * @_envname: name of the environment vaariable you are looking for
+ * @env_var: the enviroment variables
  *
  * Return: the value that comes with the variable
  */
@@ -120,11 +121,9 @@ char *get_env_varible(const char *_envname, char **env_var)
 	_nmcpy = malloc((sizeof(char) * lent) + 1);
 	if (_nmcpy == NULL)
 		return (NULL);
-
 	/* Copies contents of the name argument to the new variable, _nmcpy */
 	stringcopyconstant(_nmcpy, _envname, lent);
-
-	/**
+	/*
 	 * Looks up for enviroment variable that matches the _nmcpy variable
 	 * Assigns value to the value variable and returns address of value
 	 */
@@ -147,14 +146,8 @@ char *get_env_varible(const char *_envname, char **env_var)
 }
 
 /**
-<<<<<<< HEAD
  * prntenvvar - Prints all environment variables to the output
  * @_userenvvar: All user environment variables
-=======
- * prntenvvar - Entry point
- * @env_var: variables of all users
- *
->>>>>>> 6363f53 (_envpath.c)
  * Return: void
  */
 
@@ -167,10 +160,10 @@ void prntenvvar(char **_userenvvar)
 	{
 		/* find the lent of each env variable */
 		lent = _strlenfinder(_userenvvar[n]);
-
 		/* write it out the the standard out */
 		write(STDOUT_FILENO, _userenvvar[n], lent);
 		write(STDOUT_FILENO, "\n", 1);
 		++n;
 	}
 }
+

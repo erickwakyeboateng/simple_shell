@@ -1,32 +1,31 @@
 #include "simpleshell.h"
 
 /**
- * string_compare - Entry point
- * @_string1: string number 1
- * @_string2: string number 2
+ * string_compare - compares two strings for equality
+ * @_string1: First string
+ * @_string2: Second String
  *
  * Return: 1 if equal, 0 if not equal
  */
 
 int string_compare(char *_string1, char *_string2)
 {
-	unsigned int j = 0;
+	unsigned int m = 0;
 
-	while (_string1[j])
+	while (_string1[m])
 	{
-		if (_string1[j] != _string2[j])
+		if (_string1[m] != _string2[m])
 			return (0);
-		++j;
+		++m;
 	}
 
 	return (1);
 }
 
 /**
- * _conststrlen - Entry point
- * @_strlname: finding length with a string
- *
- * Return: lenght of a constant
+ * _conststrlen - finds the length of a constant string
+ * @_strlname: string to find length
+ * Return: Constant string lenght
  */
 
 unsigned int _conststrlen(const char *_strlname)
@@ -39,9 +38,9 @@ unsigned int _conststrlen(const char *_strlname)
 }
 
 /**
- * _strlenfinder - Entry point
- * @_stri: find length with a string
- * Return: lenght of an int unsigned
+ * _strlenfinder - Looks for the length of a string
+ * @_stri: string to find length
+ * Return: Unsigned int string lenght
  */
 
 unsigned int _strlenfinder(char *_stri)
@@ -76,19 +75,11 @@ char *_strncopier(char *_source, char *_dest, int _len)
 }
 
 /**
-<<<<<<< HEAD
  * stringcopyconstant - copies one const string to another
  * @_source: String to copy from
  * @dest: String to copy to
  * @_len: Length to copy
  * Return: Memory address of source
-=======
- * stringcopyconstant - Entry point
- * @_source: copying string
- * @_dest: String to copy to dest
- * @_len: Length to copy file
- * Return: source of memory address
->>>>>>> 027a345f6172f09309b6b901349aafd5ad2539e0
  */
 
 char *stringcopyconstant(char *_source, const char *dest, int _len)
@@ -103,3 +94,5 @@ char *stringcopyconstant(char *_source, const char *dest, int _len)
 
 	return (_source);
 }
+
+
