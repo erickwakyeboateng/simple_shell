@@ -1,9 +1,9 @@
 #include "simpleshell.h"
 /**
- * lookupcommandlength - Searches the number of commands in the string
- * @f: the string to be searched in the commands
+ * lookupcommandlength - Entry point
+ * @f: searching in the commands for the string
  *
- * Return: number of commands as an unsigned integer
+ * Return: unsigned integer of commands
  */
 unsigned int _lookupcommandlength(char *f)
 {
@@ -28,12 +28,10 @@ unsigned int _lookupcommandlength(char *f)
 }
 
 /**
- * _strtokarray - Double pointer array that holders pointers
- * to each string from the command line
- * @str: Commands from the terminal when you type them to the SI
+ * _strtokarray - Entry point
+ * @str: Commands when you type them to the SI in the terminal
  *
- * Return: Returns double pointer array of pointers that
- * are commands to interpret and execute
+ * Return: double pointer array of pointers to be executed
  */
 
 char **_strtokarray(char *str)
@@ -43,13 +41,13 @@ char **_strtokarray(char *str)
 	unsigned int lenght;
 	int k;
 
-	/* replaces '\n' added by getline with '\0'*/
+	/**** REPLACES  ****/
 	str[_strlenfinder(str) - 1] = '\0';
 	lenght = _lookupcommandlength(str);
 	if (lenght == 0)
 		return (NULL);
 
-	/* +1 accounts for NULL token that will be added */
+	/**** Adding +1 accounts for NULL token *****/
 	_tokholder = malloc((sizeof(char *)) * (lenght + 1));
 	if (_tokholder == NULL)
 		return (NULL);

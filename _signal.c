@@ -1,10 +1,12 @@
 #include "simpleshell.h"
+
 /**
- * _signalhandler - handles signals and write the prompt
- * @sig: signal to handle
+ * _signalhandler - Entry point
+ * @sig: handling signal
  *
  * Return: void
  */
+
 void _signalhandler(int sig_nal)
 {
 	(void)sig_nal;
@@ -12,12 +14,13 @@ void _signalhandler(int sig_nal)
 }
 
 /**
- * main - simple shell recreation
- * @arguc: argument count
+ * main - Entry point
+ * @arguc: argument to be count
  * @arguv: argument vector
- * @env: environment variables
- * Return: 0 on exit, 1 if any failures happen
+ * @env: variables of the environment
+ * Return: 0 on exit, else 1 if any failures happen
  */
+
 int main(int arguc, char **arguv, char **_env)
 {
 	char *buff,  **com_mands;
@@ -31,15 +34,15 @@ int main(int arguc, char **arguv, char **_env)
 	(void)arguc;
 
 	buff = NULL, lent = 0, _counter = 0;
-	if (isatty(STDIN_FILENO)) /* write _sig_nal only if it's from standard input */
+	if (isatty(STDIN_FILENO)) /* write _sig_nal for only standard input */
 		write(STDOUT_FILENO, _sig_nal, 2);
-	signal(SIGINT, _signalhandler); /*signal kill for ctrl + c */
-	while ((_karacters = getline(&buff, &lent, stdin))) /* while loop contining forever */
+	signal(SIGINT, _signalhandler); /* use ctrl + c to kill signal */
+	while ((_karacters = getline(&buff, &lent, stdin))) /* contining forever while loop */
 	{
-		if (_karacters == EOF) /* checks for end of file */
+		if (_karacters == EOF) /* checking the end of files */
 			_endof(buff);
-		++_counter; /* counting the number of times the _sig_nal shows up to display correct error */
-		com_mands = _strtokarray(buff); /* collects com_mands from _sig_nal and store in a double pointer array */
+		++_counter; /* correct errors the number of times it shows up */
+		com_mands = _strtokarray(buff); /* double pointer array commands */
 
 		if (string_compare(changedirectorycommand, com_mands[0]))
 		{
@@ -47,35 +50,37 @@ int main(int arguc, char **arguv, char **_env)
 				perror(com_mands[1]);
 			continue;
 		}
-		_child = fork(); /*create a new process */
+
+		/**** NEW PROCESS ****/
+		_child = fork();
 		if (_child == -1)
 			_forkfail();
 		if (_child == 0)
 		{
-			if (com_mands == NULL)  /* check if com_mands is NULL or all empty spaces */
+			if (com_mands == NULL)  /* com_mands  NULL and all empty spaces */
 				null_command(buff);
-			else if (string_compare(_excommand, com_mands[0])) /* check if the command is an EXIT to exit the shell */
+			else if (string_compare(_excommand, com_mands[0])) /* checking command to an EXIT to exit the shell */
 				_clonse(buff, com_mands);
-			else if (string_compare(_envcommand, com_mands[0])) /* check if the command is ENV to print out environment variables */
+			else if (string_compare(_envcommand, com_mands[0])) /* print out ENV command */
 				_envout(buff, com_mands, _env);
-			else if (stat(com_mands[0], &_filestatus) == 0) /* check if the command is a full path to an executable file */
+			else if (stat(com_mands[0], &_filestatus) == 0) /* full path of an executable file */
 				execve(com_mands[0], com_mands, NULL);
-			else /* check all $PATH directories for executable com_mands */
+			else /* checking all $PATH directories for executable com_mands */
 				_createpath(com_mands, buff, _env, arguv, _counter);
 		}
-		else  /* Free mallocs from tokens we created */
+		else  /* creating a free mallocs tokens */
 		{
-			wait(&_status);  /* wait for the _child process to finish */
+			wait(&_status);  /* waiting to finish _child process */
 			if (com_mands == NULL)
 				_freebuffcom(buff, com_mands);
-			else if (string_compare(_excommand, com_mands[0])) /* if exit, free buff and com_mands, then exit program */
+			else if (string_compare(_excommand, com_mands[0])) /* for exit, free buff and com_mands, then exit program */
 				_clonse(buff, com_mands);
-			else /*free buffer and com_mands double ptr from parent process */
+			else /*  double print parent process */
 				_freebuffcom(buff, com_mands);
 		}
-		lent = 0; /* reset lent and buffer for getline funciton */
+		lent = 0;
 		buff = NULL;
-		if (isatty(STDIN_FILENO)) /* write outs _sig_nal only if from standard input */
+		if (isatty(STDIN_FILENO)) /* inputing standard _sig_nal */
 			write(STDOUT_FILENO, _sig_nal, 2);
 	}
 	if (_karacters == -1)
