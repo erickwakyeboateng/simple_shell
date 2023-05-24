@@ -77,7 +77,7 @@ char *_strncopier(char *_source, char *_dest, int _len)
 /**
  * stringcopyconstant - copies one const string to another
  * @_source: String to copy from
- * @_dest: String to copy to
+ * @dest: String to copy to
  * @_len: Length to copy
  * Return: Memory address of source
  */

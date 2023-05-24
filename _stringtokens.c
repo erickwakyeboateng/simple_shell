@@ -1,7 +1,7 @@
 #include "simpleshell.h"
 /**
- * lookupcommandlength - Searches the number of commands in the string
- * @f: the string to be searched in the commands
+ * _lookupcommandlength - looks for the number of commands in string
+ * @f: the string to be searched in the command
  *
  * Return: number of commands as an unsigned integer
  */
@@ -28,9 +28,9 @@ unsigned int _lookupcommandlength(char *f)
 }
 
 /**
- * _strtokarray - Double pointer array that holders pointers
+ * _strtokarray - Double pointer array holder that points
  * to each string from the command line
- * @str: Commands from the terminal when you type them to the SI
+ * @str: Commands from the terminal
  *
  * Return: Returns double pointer array of pointers that
  * are commands to interpret and execute
